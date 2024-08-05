@@ -74,12 +74,14 @@ struct ContentView: View {
             consecutiveLiveCount = 0
             consecutiveDeadCount += 1
         }
-        
-        let newCard = Card(title: shouldAddLiveCard ? "Живая" : "Мёртвая",
-                           subTitle: shouldAddLiveCard ? "и шевелится!" : "или прикидывается",
-                           icon: shouldAddLiveCard ? "💥" : "💀")
-        
-        context.insert(newCard)
+
+        if consecutiveLiveCount < 3 {
+            let newCard = Card(title: shouldAddLiveCard ? "Живая" : "Мёртвая",
+                               subTitle: shouldAddLiveCard ? "и шевелится!" : "или прикидывается",
+                               icon: shouldAddLiveCard ? "💥" : "💀")
+            
+            context.insert(newCard)
+        }
         
         // если карты "живая" >= 3
         if consecutiveLiveCount >= 3 {
